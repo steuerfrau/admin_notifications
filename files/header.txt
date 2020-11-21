@@ -1,0 +1,6 @@
+Lieber Admin,
+
+Hier kommt das Ergebnis der automatischen Logfile-Kontrolle Ihres Servers. Die Logfile-Kontrolle prüft die Standard-Systemlogfiles im Verzeichnis /var/log/ auf protokollierte Störungen. Je nach Dienst werden auch statistische Werte, wie z.B. die Anzahl der SSH-Logins oder die Speicherplatzbelegung Ihrer Festplatte(n), ausgewertet und angezeigt.
+
+Taucht eine Störung auf, überprüfen und korrigieren Sie bitte den betreffenden Dienst. Benötigen Sie Hilfe bei der Fehlerbehebung, kommen Sie gern auf uns zurück. Unser Admin-Team ist Ihnen dabei behilflich.
+

@@ -1,0 +1,5 @@
+Das Ergebnis der automatischen Logfile-Kontrolle wird Ihnen per E-Mail zugeschickt. Die Protokolldateien finden Sie außerdem auf Ihrem Server im Verzeichnis /var/log/logwatch.
+Haben Sie Fragen, oder benötigen Sie Unterstützung? Wir stehen gerne zur Verfügung.
+
+Viele Grüße
+

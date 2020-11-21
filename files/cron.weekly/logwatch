@@ -1,0 +1,40 @@
+#!/bin/bash
+# logwatch normally lets you choose between either file or email.
+# Here we first create the filename then use it to first collect
+# the output and then send it via email.
+
+# variables
+MAILTO=""
+LOGWATCHRESULT="/var/log/logwatch/$( date +\%Y-\%m-\%d_\%H-\%M-\%S)_logwatch.txt"
+CUSTOMHEADER="/etc/logwatch/conf/header.txt"
+CUSTOMFOOTER="/etc/logwatch/conf/footer.txt"
+MAILFILE=$( mktemp )
+
+# execute logwatch and save to file
+logger -t "logwatch" "Starting daily logwatch job..."
+logger -t "logwatch" "Saving logwatch result to $LOGWATCHRESULT..."
+/usr/sbin/logwatch --filename $LOGWATCHRESULT
+
+# compose the email
+cat << EOF > $MAILFILE
+From: Sender <support@company>
+To: ${MAILTO// /, }
+Content-Type: text/plain; charset=utf-8
+Subject: Logwatch für $HOSTNAME
+
+EOF
+
+# add custom text
+cat $CUSTOMHEADER >> $MAILFILE
+cat $LOGWATCHRESULT >> $MAILFILE
+echo -e "" >> $MAILFILE
+cat $CUSTOMFOOTER >> $MAILFILE
+
+# send mail and clean up
+if [ "$MAILTO" != "" ]; then
+    logger -t "logwatch" "Sending email with logwatch results..."
+    cat $MAILFILE | sendmail $MAILTO
+fi
+rm $MAILFILE
+
+# EOF
